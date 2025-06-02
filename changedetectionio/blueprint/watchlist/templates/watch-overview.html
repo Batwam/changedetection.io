@@ -102,7 +102,7 @@
     <div id="watch-table-wrapper">
 
         <table class="pure-table pure-table-striped watch-table">
-            <thead  class="watch-table-header">
+            <thead id="watch-table-header">
             <tr>
                 {% set link_order = "desc" if sort_order  == 'asc' else "asc" %}
                 {% set arrow_span = "" %}
@@ -217,7 +217,7 @@
                     Not yet
                     {% endif %}
                 </td>
-                <td class="watch-list-buttons-row">
+                <td id="watch-list-buttons-row">
                     <a href="" class="already-in-queue-button recheck pure-button pure-button-primary" style="display: none;" disabled="disabled">Queued</a>
 
                     <a href="{{ url_for('ui.form_watch_checknow', uuid=watch.uuid, tag=request.args.get('tag')) }}" data-op='recheck' class="ajax-op recheck pure-button pure-button-primary">Recheck</a>
