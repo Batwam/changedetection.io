@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="tracking-ldjson-price-data" title="Automatically following embedded price information"><img src="{{url_for('static_content', group='images', filename='price-tag-icon.svg')}}"  class="status-icon price-follow-tag-icon" > Price</span>
                     {%- endif -%}
                     {%- for watch_tag_uuid, watch_tag in datastore.get_all_tags_for_watch(watch['uuid']).items() -%}
-                      <span class="watch-tag-list">{{ watch_tag.title }}</span>
+                      <span class="watch-tag-list" style="float: right;">{{ watch_tag.title }}</span>
                     {%- endfor -%}
                 </td>
 {%- if any_has_restock_price_processor -%}

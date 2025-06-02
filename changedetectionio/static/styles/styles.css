@@ -319,7 +319,7 @@ ul#requests-extra_browsers {
   --color-last-checked: #bbb;
   --color-text-footer: #444;
   --color-border-watch-table-cell: #eee;
-  --color-text-watch-tag-list: rgba(231, 0, 105, 0.4);
+  --color-text-watch-tag-list: var(--color-background-button-primary);
   --color-background-new-watch-form: rgba(0, 0, 0, 0.05);
   --color-background-new-watch-input: var(--color-white);
   --color-background-new-watch-input-transparent: rgba(255, 255, 255, 0.1);
@@ -364,7 +364,7 @@ html[data-darkmode="true"] {
   --color-background-input: var(--color-grey-350);
   --color-text-input-description: var(--color-grey-600);
   --color-text-input-placeholder: var(--color-grey-600);
-  --color-text-watch-tag-list: rgba(250, 62, 146, 0.4);
+  --color-text-watch-tag-list: var(--color-background-button-primary);
   --color-background-code: var(--color-grey-200);
   --color-background-tab: rgba(0, 0, 0, 0.2);
   --color-background-tab-hover: rgba(0, 0, 0, 0.5);
