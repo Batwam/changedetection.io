@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="watch-table-wrapper">
 
         <table class="pure-table pure-table-striped watch-table">
-            <thead>
+            <thead id="watch-table-header">
             <tr>
                 {%- set link_order = "desc" if sort_order  == 'asc' else "asc" -%}
                 {%- set arrow_span = "" -%}
@@ -220,8 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     Not yet
                     {%- endif -%}
                 </td>
-                <td>
-                    {%- set target_attr = ' target="' ~ watch.uuid ~ '"' if datastore.data['settings']['application']['ui'].get('open_diff_in_new_tab') else '' -%}
+                <td id="watch-list-buttons-row">
                     <a href="" class="already-in-queue-button recheck pure-button pure-button-primary" style="display: none;" disabled="disabled">Queued</a>
                     <a href="{{ url_for('ui.form_watch_checknow', uuid=watch.uuid, tag=request.args.get('tag')) }}" data-op='recheck' class="ajax-op recheck pure-button pure-button-primary">Recheck</a>
                     <a href="{{ url_for('ui.ui_edit.edit_page', uuid=watch.uuid, tag=active_tag_uuid)}}#general" class="pure-button pure-button-primary">Edit</a>

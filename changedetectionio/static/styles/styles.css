@@ -1557,3 +1557,37 @@ ul {
   padding: 10px;
   font-size: 0.8rem;
   color: #fff; }
+
+    /* custom mobile view */
+@media  only screen and (max-width: 600px) {
+  .collapsible-watch-form,
+  #post-list-buttons,
+  .checkbox-uuid,
+  .watch-controls,
+  .status-icon,
+  .icon,
+  .icon-spread,
+  .last-checked,
+  .sticky-tab,
+  .button-tag,
+  .paused,
+  .has-error,
+  #watch-list-buttons-row,
+  #watch-table-header {
+    display: none !important;
+  }
+
+  .watch-tag-title {
+    padding-top: 0px; 
+    padding-bottom: 2px; 
+  }
+
+/* reduce padding for top bar */
+  .pure-menu-horizontal {
+    padding: 0px; }
+
+/* reduce padding above watch list since top bar is narrower */
+  section.content {
+    padding-top: 45px; }
+
+}
