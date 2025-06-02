@@ -6,6 +6,27 @@
 <script>let nowtimeserver={{ now_time_server }};</script>
 <script>let ajax_toggle_url="{{ ajax_toggle_url }}";</script>
 
+<!-- Script to collapse the Add new watch button -->
+<script>
+  $(function () {
+    // Get the initial width of the button
+    const $btn = $('#toggle-watch-form');
+    const initialWidth = $btn.outerWidth();
+    $btn.css('width', initialWidth + 'px'); // Set the width explicitly
+    $btn.click(function () {
+      const $form = $('#new-watch-form');
+      if ($form.is(':visible')) {
+        $form.slideUp();
+        $(this).text('▸ Add new watch');
+      } else {
+        $form.slideDown();
+        $(this).text('▾ Hide form');
+      }
+      // Re-apply the width after text change
+      $(this).css('width', initialWidth + 'px');
+    });
+  });
+</script>
 <style>
 .checking-now .last-checked {
     background-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.1) 100%);
@@ -16,6 +37,8 @@
 </style>
 <div class="box">
 
+    <div class="collapsible-watch-form">
+    <button type="button" id="toggle-watch-form" class="pure-button pure-button-primary add_watch">▸ Add new watch</button>
     <form class="pure-form" action="{{ url_for('ui.ui_views.form_quick_watch_add', tag=active_tag_uuid) }}" method="POST" id="new-watch-form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" >
         <fieldset>
@@ -34,6 +57,7 @@
         </fieldset>
         <span style="color:#eee; font-size: 80%;"><img alt="Create a shareable link" style="height: 1em;display:inline-block;" src="{{url_for('static_content', group='images', filename='spread-white.svg')}}" > Tip: You can also add 'shared' watches. <a href="https://github.com/dgtlmoon/changedetection.io/wiki/Sharing-a-Watch">More info</a></span>
     </form>
+    </div>
 
     <form class="pure-form" action="{{ url_for('ui.form_watch_list_checkbox_operations') }}" method="POST" id="watch-list-form">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" >

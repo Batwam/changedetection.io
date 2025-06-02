@@ -1125,6 +1125,14 @@ footer {
       align-items: center;
       gap: 1em; }
 
+.add_watch {
+  margin: 2px 4px; 
+  padding: 4px 8px; 
+  font-size: 90%; 
+  font-weight: bold; 
+  border-radius: 4px;
+}
+
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
   .box {
     max-width: 95%; }
