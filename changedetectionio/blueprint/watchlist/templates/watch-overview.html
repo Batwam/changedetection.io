@@ -102,7 +102,7 @@
     <div id="watch-table-wrapper">
 
         <table class="pure-table pure-table-striped watch-table">
-            <thead>
+            <thead  class="watch-table-header">
             <tr>
                 {% set link_order = "desc" if sort_order  == 'asc' else "asc" %}
                 {% set arrow_span = "" %}
@@ -147,7 +147,7 @@
                     <a class="ajax-op state-on mute-toggle" data-op="mute"  style="display: none" href="{{url_for('watchlist.index', op='mute', uuid=watch.uuid, tag=active_tag_uuid)}}"><img src="{{url_for('static_content', group='images', filename='bell-off.svg')}}" alt="UnMute notification" title="UnMute notification" class="icon icon-mute" ></a>
                 </td>
                 <td class="title-col inline">
-                    <img class="favicon" src="{{ favicon }}" alt="favicon" style="height: 24px; width: 24px; margin-right: 5px; vertical-align: middle;" >
+                    <img class="watch-favicon" src="{{ favicon }}" alt="favicon">
                     {{watch.title if watch.title is not none and watch.title|length > 0 else watch.url}}
                     <a class="external" target="_blank" rel="noopener" href="{{ watch.link.replace('source:','') }}"></a>
                     <a class="link-spread" href="{{url_for('ui.form_share_put_watch', uuid=watch.uuid)}}"><img src="{{url_for('static_content', group='images', filename='spread.svg')}}" class="status-icon icon icon-spread" title="Create a link to share watch config with others" ></a>
@@ -217,7 +217,7 @@
                     Not yet
                     {% endif %}
                 </td>
-                <td>
+                <td class="watch-list-buttons-row">
                     <a href="" class="already-in-queue-button recheck pure-button pure-button-primary" style="display: none;" disabled="disabled">Queued</a>
 
                     <a href="{{ url_for('ui.form_watch_checknow', uuid=watch.uuid, tag=request.args.get('tag')) }}" data-op='recheck' class="ajax-op recheck pure-button pure-button-primary">Recheck</a>
