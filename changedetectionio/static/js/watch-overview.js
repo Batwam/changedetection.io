@@ -68,7 +68,7 @@ $(function () {
             if (eta_complete + 2 > nowtimeserver && fetch_duration > 3) {
                 const remaining_seconds = Math.abs(eta_complete) - nowtimeserver - 1;
 
-                let r = Math.round((1.0 - (remaining_seconds / fetch_duration)) * 100);
+                let r = (1.0 - (remaining_seconds / fetch_duration)) * 100;
                 if (r < 10) {
                     r = 10;
                 }
@@ -76,8 +76,8 @@ $(function () {
                     r = 100;
                 }
                 $(this).css('background-size', `${r}% 100%`);
+                //$(this).text(`${r}% remain ${remaining_seconds}`);
             } else {
-                // Snap to full complete
                 $(this).css('background-size', `100% 100%`);
             }
         });
@@ -86,3 +86,32 @@ $(function () {
     }, time_check_step_size_seconds * 1000);
 });
 
+// extract snapshot by leveraging content of preview page
+document.querySelectorAll('.watch-preview').forEach(el => {
+    const uuid = el.getAttribute('data-uuid');
+
+    if (!uuid) {
+        el.innerText = '[Preview unavailable]';
+        return;
+    }
+
+    fetch(`/preview/${uuid}`)
+        .then(r => r.text())
+        .then(html => {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            const contentDiff = div.querySelector('#diff-col');
+            let rawText = contentDiff.textContent;
+            rawText = rawText
+                .replace(/^(\s*\n)+/, '')   // Remove leading empty lines
+                .replace(/(\s+(?=(\n|$)))/, '');  // Remove empty lines
+            const cleanedLines = rawText
+                            .split('\n')
+                            .map(line => line.trimStart())
+                            .join('\n');
+            el.innerHTML = `${cleanedLines}`;
+        })
+        .catch(() => {
+            el.innerText = '[Preview unavailable]';
+        });
+});

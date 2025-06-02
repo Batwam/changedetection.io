@@ -175,6 +175,9 @@
                     {% for watch_tag_uuid, watch_tag in datastore.get_all_tags_for_watch(watch['uuid']).items() %}
                       <span class="watch-tag-list">{{ watch_tag.title }}</span>
                     {% endfor %}
+                    {% if watch.history_n >= 1 %}
+	                    <pre class="watch-preview" data-uuid="{{ watch.uuid }}">Loading preview...</pre>
+                    {% endif %}
                 </td>
             <!-- @todo make it so any watch handler obj can expose this --->
 {% if any_has_restock_price_processor %}
