@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </tr>
             {%- endif -%}
             {%- for watch in (watches|sort(attribute=sort_attribute, reverse=sort_order == 'asc'))|pagination_slice(skip=pagination.skip) -%}
+                {% set favicon = 'https://www.google.com/s2/favicons?domain=' + watch.url + '&sz=64'%}
                 {%- set checking_now = is_checking_now(watch) -%}
                 {%- set history_n = watch.history_n -%}
                 {#  Mirror in changedetectionio/static/js/realtime.js for the frontend #}
@@ -132,7 +133,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a class="ajax-op state-off mute-toggle" data-op="mute" href="{{url_for('watchlist.index', op='mute', uuid=watch.uuid, tag=active_tag_uuid)}}"><img src="{{url_for('static_content', group='images', filename='bell-off.svg')}}" alt="Mute notification" title="Mute notification" class="icon icon-mute" ></a>
                     <a class="ajax-op state-on mute-toggle" data-op="mute"  style="display: none" href="{{url_for('watchlist.index', op='mute', uuid=watch.uuid, tag=active_tag_uuid)}}"><img src="{{url_for('static_content', group='images', filename='bell-off.svg')}}" alt="UnMute notification" title="UnMute notification" class="icon icon-mute" ></a>
                 </td>
-                <td class="title-col inline">{{watch.title if watch.title is not none and watch.title|length > 0 else watch.url}}
+                <td class="title-col inline">
+                    <img class="watch-favicon" src="{{ favicon }}" alt="favicon">
+                    {{watch.title if watch.title is not none and watch.title|length > 0 else watch.url}}
                     <a class="external" target="_blank" rel="noopener" href="{{ watch.link.replace('source:','') }}">&nbsp;</a>
                     <a class="link-spread" href="{{url_for('ui.form_share_put_watch', uuid=watch.uuid)}}"><img src="{{url_for('static_content', group='images', filename='spread.svg')}}" class="status-icon icon icon-spread" title="Create a link to share watch config with others" ></a>
 
