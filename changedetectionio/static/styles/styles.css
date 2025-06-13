@@ -1134,12 +1134,13 @@ footer {
   margin-right: 5px; 
   vertical-align: middle;}
 
-.add_watch {
-  margin: 2px 4px; 
-  padding: 4px 8px; 
-  font-size: 90%; 
-  font-weight: bold; 
-  border-radius: 4px;}
+
+#new-watch-details{
+  width: 100%;
+  color: white; 
+  align-text: left;
+  font-weight: bold;
+}
 
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
   .box {
@@ -1560,7 +1561,8 @@ ul {
 
     /* custom mobile view */
 @media  only screen and (max-width: 600px) {
-  .collapsible-watch-form,
+  /* .collapsible-watch-form, */
+  #new-watch-form,
   #post-list-buttons,
   .checkbox-uuid,
   .watch-controls,
@@ -1588,6 +1590,9 @@ ul {
 
 /* reduce padding above watch list since top bar is narrower */
   section.content {
-    padding-top: 45px; }
+    padding-top: 36px; }
 
+/* make list wide */
+  .box {
+  	width: 100%;}
 }
