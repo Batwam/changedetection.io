@@ -993,11 +993,12 @@ label:hover {
     color: var(--color-text-new-watch-input); }
   #new-watch-form .label {
     display: none; }
-  #new-watch-form legend {
+  #new-watch-form details summary {
     color: var(--color-text-legend);
     font-weight: bold; }
   #new-watch-form #watch-add-wrapper-zone {
-    /* URL field grows always, other stay static in width */ }
+    /* URL field grows always, other stay static in width */ 
+    margin-top: 10px; }
     @media only screen and (min-width: 760px) {
       #new-watch-form #watch-add-wrapper-zone {
         display: flex;
