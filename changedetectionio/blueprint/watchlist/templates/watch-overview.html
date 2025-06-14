@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="box" id="form-quick-watch-add">
 
     <form class="pure-form" action="{{ url_for('ui.ui_views.form_quick_watch_add', tag=active_tag_uuid) }}" method="POST" id="new-watch-form">
-    <details closed>
+    <details>
         <summary style="text-align: center;">Add a new web page change detection watch</summary>
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" >
         <fieldset>
