@@ -162,6 +162,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     {%- for watch_tag_uuid, watch_tag in datastore.get_all_tags_for_watch(watch['uuid']).items() -%}
                       <span class="watch-tag-list" style="float: right;">{{ watch_tag.title }}</span>
                     {%- endfor -%}
+                    {%- if watch.history_n >= 1 -%}
+	                    <pre class="watch-preview" data-uuid="{{ watch.uuid }}">Loading preview...</pre>
+                    {%- endif -%}
                 </td>
 {%- if any_has_restock_price_processor -%}
                 <td class="restock-and-price">

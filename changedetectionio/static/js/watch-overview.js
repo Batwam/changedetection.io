@@ -92,3 +92,32 @@ $(function () {
     }, time_check_step_size_seconds * 1000);
 });
 
+// extract snapshot by leveraging content of preview page
+document.querySelectorAll('.watch-preview').forEach(el => {
+    const uuid = el.getAttribute('data-uuid');
+
+    if (!uuid) {
+        el.innerText = '[Preview unavailable]';
+        return;
+    }
+
+    fetch(`/preview/${uuid}`)
+        .then(r => r.text())
+        .then(html => {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            const contentDiff = div.querySelector('#diff-col');
+            let rawText = contentDiff.textContent;
+            rawText = rawText
+                .replace(/^(\s*\n)+/, '')   // Remove leading empty lines
+                .replace(/(\s+(?=(\n|$)))/, '');  // Remove empty lines
+            const cleanedLines = rawText
+                            .split('\n')
+                            .map(line => line.trimStart())
+                            .join('\n');
+            el.innerHTML = `${cleanedLines}`;
+        })
+        .catch(() => {
+            el.innerText = '[Preview unavailable]';
+        });
+});
